@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Job_Portal/',
+  base: 'Job_Portal',
   plugins: [vue(),tailwindcss()],
 })
 
