@@ -32,8 +32,7 @@
           your life
         </h2>
         <span
-          >Don't Just Survive, Thrive Find Your Perfect Job in Phnom
-          Penh.</span
+          >Don't Just Survive, Thrive Find Your Perfect Job in Phnom Penh.</span
         >
         <div class="relative w-80 mx-auto ml-0 text-black">
           <input
@@ -59,81 +58,272 @@
         </div>
       </div>
       <div>
-        <div class="w-[500px] h-[250px] bg-[url('.//img/images.png')] bg-cover bg-center rounded-xl relative"></div>
+        <div
+          class="w-[500px] h-[250px] bg-[url('.//img/images.png')] bg-cover bg-center rounded-xl relative"
+        ></div>
       </div>
-      <img class="w-55 absolute mt-8 ml-240" src="../img/girl.png" alt="">
+      <img class="w-55 absolute mt-8 ml-240" src="../img/girl.png" alt="" />
     </div>
   </div>
   <!-- Select -->
   <div class="w-full h-[250px] flex flex-col justify-center items-center gap-3">
-  <div class="grid grid-cols-2 w-[650px] bg-blue-100 gap-4 p-5 rounded-sm">
-    <!-- Search bar - reduced width -->
-    <div class="relative w-full mx-auto ml-0 text-black">
-      <input
-        type="text"
-        id="searchjob"
-        placeholder="Search Job"
-        class="w-full pr-10 pl-3 py-1.5 text-sm border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
-      />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-4 h-4 absolute right-3 top-1/2 transform -translate-y-1/2 text-black"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+    <div class="grid grid-cols-2 w-[650px] bg-blue-100 gap-4 p-5 rounded-sm">
+      <!-- Search bar -->
+      <div class="relative w-full mx-auto ml-0 text-black">
+        <input
+          type="text"
+          id="searchjob"
+          placeholder="Search Job"
+          class="w-full pr-10 pl-3 py-1.5 text-sm border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
         />
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-4 h-4 absolute right-3 top-1/2 transform -translate-y-1/2 text-black"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
+        </svg>
+      </div>
+
+      <!-- Location dropdown (converted to match the other custom dropdowns) -->
+      <div
+        class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2"
+      >
+        <div class="px-3 py-1.5 text-sm text-gray-500">Location</div>
+        <div class="relative">
+          <div
+            @click.stop="toggleLocationDropdown"
+            class="bg-transparent text-sm py-1.5 cursor-pointer flex items-center"
+          >
+            {{ selectedLocation }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 ml-1"
+              :class="{ 'rotate-180': isLocationDropdownOpen }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <div
+            v-if="isLocationDropdownOpen"
+            class="absolute right-[-8px] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-48 z-10"
+          >
+            <div class="p-2">
+              <div
+                @click="selectLocation('Phnom Penh')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-sm"
+              >
+                Phnom Penh
+              </div>
+              <div
+                @click="selectLocation('Siem Reap')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-sm mt-1"
+              >
+                Siem Reap
+              </div>
+              <div
+                @click="selectLocation('Battambang')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-sm mt-1"
+              >
+                Battambang
+              </div>
+              <div
+                @click="selectLocation('Sihanoukville')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-sm mt-1"
+              >
+                Sihanoukville
+              </div>
+              <div
+                @click="selectLocation('Remote')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-sm mt-1"
+              >
+                Remote
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job type dropdown (remains the same) -->
+      <div
+        class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2"
+      >
+        <div class="px-3 py-1.5 text-sm text-gray-500">Job type</div>
+        <div class="relative">
+          <div
+            @click="toggleDropdown"
+            class="bg-transparent text-sm py-1.5 cursor-pointer flex items-center"
+          >
+            {{ selectedJobType }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 ml-1"
+              :class="{ 'rotate-180': isDropdownOpen }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <div
+            v-if="isDropdownOpen"
+            class="absolute right-[-8px] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-74"
+          >
+            <div class="grid grid-cols-3 grid-rows-2 gap-2 p-3">
+              <div
+                @click="selectOption('full-time')"
+                class="px-3 py-2 bg-white shadow-lg hover:bg-sky-400 rounded cursor-pointer text-center text-sm"
+              >
+                Full-time
+              </div>
+              <div
+                @click="selectOption('part-time')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+              >
+                Part-time
+              </div>
+              <div
+                @click="selectOption('remote')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+              >
+                Remote
+              </div>
+              <div
+                @click="selectOption('freelance')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+              >
+                Freelance
+              </div>
+              <div
+                @click="selectOption('internship')"
+                class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+              >
+                Internship
+              </div>
+              <div
+                @click="selectOption('contract')"
+                class="px-3 py-2 hover:bg-sky-400 rounded shadow-lg cursor-pointer text-center text-sm"
+              >
+                Contract
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience level dropdown (remains the same) -->
+      <div
+        class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2"
+      >
+        <div class="px-3 py-1.5 text-sm text-gray-500">Experience level</div>
+        <div class="relative">
+          <div
+            @click.stop="toggleExperienceDropdown"
+            class="bg-transparent text-sm py-1.5 cursor-pointer flex items-center"
+          >
+            {{ selectedExperienceLevel }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 ml-1"
+              :class="{ 'rotate-180': isExperienceDropdownOpen }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+          <div
+            v-if="isExperienceDropdownOpen"
+            class="absolute right-[-8px] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-74 z-10"
+          >
+            <div class="p-3">
+              <!-- First row - 2 columns -->
+              <div class="grid grid-cols-2 gap-2 mb-2">
+                <div
+                  @click="selectExperience('Entry level')"
+                  class="px-3 py-2 bg-white shadow-lg hover:bg-sky-400 rounded cursor-pointer text-center text-sm"
+                >
+                  Entry level
+                </div>
+                <div
+                  @click="selectExperience('Mid level')"
+                  class="px-3 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+                >
+                  Mid level
+                </div>
+              </div>
+              <!-- Second row - 3 columns -->
+              <div class="grid grid-cols-3 gap-2 mb-2">
+                <div
+                  @click="selectExperience('Senior level')"
+                  class="px-1 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+                >
+                  Senior level
+                </div>
+                <div
+                  @click="selectExperience('Team lead')"
+                  class="px-1 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+                >
+                  Team lead
+                </div>
+                <div
+                  @click="selectExperience('Manager')"
+                  class="px-1 py-2 hover:bg-sky-400 shadow-lg rounded cursor-pointer text-center text-sm"
+                >
+                  Manager
+                </div>
+              </div>
+              <!-- Third row - 1 column -->
+              <div class="grid grid-cols-1 gap-2">
+                <div
+                  @click="selectExperience('Executive')"
+                  class="px-3 py-2 hover:bg-sky-400 rounded shadow-lg cursor-pointer text-center text-sm w-36"
+                >
+                  Executive
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <!-- Location dropdown -->
-    <div class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2">
-      <div class="px-3 py-1.5 text-sm text-gray-500">Location</div>
-      <select class="bg-transparent border-none text-sm outline-none py-1.5">
-        <option value="">Select</option>
-        <option value="phnom-penh">Phnom Penh</option>
-        <option value="siem-reap">Siem Reap</option>
-        <option value="battambang">Battambang</option>
-        <option value="sihanoukville">Sihanoukville</option>
-        <option value="remote">Remote</option>
-      </select>
-    </div>
-    
-    <!-- Job type dropdown -->
-    <div class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2">
-      <div class="px-3 py-1.5 text-sm text-gray-500">Job type</div>
-      <select class="bg-transparent border-none text-sm outline-none py-1.5 grid grid-rows-2">
-        <option value="">Select</option>
-        <option value="full-time">Full-time</option>
-        <option value="part-time">Part-time</option>
-        <option value="contract">Contract</option>
-        <option value="freelance">Freelance</option>
-        <option value="internship">Internship</option>
-      </select>
-    </div>
-    
-    <!-- Experience level dropdown -->
-    <div class="flex justify-between items-center w-full border border-gray-300 rounded-lg bg-white px-2">
-      <div class="px-3 py-1.5 text-sm text-gray-500">Experience level</div>
-      <select class="bg-transparent border-none text-sm outline-none py-1.5">
-        <option value="">Select</option>
-        <option value="entry">Entry level</option>
-        <option value="mid">Mid level</option>
-        <option value="senior">Senior level</option>
-        <option value="executive">Executive</option>
-      </select>
+
+    <!-- Search button outside the grid and centered -->
+    <div class="flex justify-center items-center w-full mt-4">
+      <button
+        class="w-[300px] bg-blue-600 text-white text-sm font-medium py-1.5 rounded-lg hover:bg-blue-700 transition duration-300"
+      >
+        Search
+      </button>
     </div>
   </div>
-  
-  <button class="w-[300px] mx-auto bg-blue-600 text-white text-sm font-medium py-1.5 rounded-lg hover:bg-blue-700 transition duration-300">
-    Search
-  </button>
-</div>
   <!-- Job store -->
   <div class="w-full max-w-6xl mx-auto p-4">
     <!-- Job store -->
@@ -144,19 +334,53 @@
         <div
           v-for="(card, index) in visibleCards"
           :key="index"
-          class="bg-white rounded-lg shadow-md p-4 border border-gray-200 hover:shadow-lg transition-shadow"
+          class="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow flex flex-col"
         >
-          <h3 class="font-bold text-lg mb-2">Job Title {{ index + 1 }}</h3>
-          <p class="text-gray-600 mb-2">Company Name</p>
-          <p class="text-gray-500 text-sm mb-3">Location</p>
-          <div class="flex justify-between items-center">
-            <span class="text-blue-600 font-medium">$50k-$70k</span>
-            <button
-              class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-600"
-            >
-              Apply
-            </button>
-          </div>
+        <div
+  class="w-full h-[130px] bg-[url('.//img/image-11.jpg')] bg-cover bg-center pt-3"
+>
+  <div class="flex justify-between items-center pr-2">
+    <span
+      class="px-4 py-2 text-sm bg-white text-center rounded-r-full font-sans"
+    >
+      ABA Bank
+    </span>
+    <button class="rounded-full bg-pink-400 p-1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 text-white"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+    <div class="flex justify-between px-3 pt-3">
+      <span class="font-semibold text-blue-600">Web Developer</span>
+      <div>
+        <span>Icon 12 days ago</span>
+      </div>
+    </div>
+    <div class="w-[65px] h-[0.1px] bg-gray-600 ml-3 mt-2"></div>
+    <div class="flex py-2 px-3 justify-between">
+      <div class="flex flex-col gap-1">
+        <span class="text-[18px] font-semibold">$800 ~ $1200</span>
+        <span class="text-[13px] font-semibold">Icon Full-time</span>
+        <span class="text-[13px] font-semibold" >Icon Toul Kork</span>
+      </div>
+      <div class="flex flex-col py-2 gap-2">
+        <button class="px-3 py-1 border border-blue-600 text-[14px] text-blue-600 rounded-3xl">View detail</button>
+        <button class="px-3 py-1 bg-blue-600 text-white text-[14px]  rounded-3xl ">Apply</button>
+      </div>
+    </div>
         </div>
       </div>
 
@@ -300,7 +524,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 import logo from "../img/logo.png";
 
 // Sample data - in a real app, this would come from an API
@@ -319,6 +543,88 @@ const visibleCards = computed(() => {
 const toggleShowMore = () => {
   showAll.value = !showAll.value;
 };
+
+// Job type dropdown functionality
+const selectedJobType = ref("");
+const isDropdownOpen = ref(false);
+
+const toggleDropdown = (event) => {
+  // Prevent the native select from opening
+  event.preventDefault();
+  isDropdownOpen.value = !isDropdownOpen.value;
+
+  // Close other dropdowns if they're open
+  if (isDropdownOpen.value) {
+    isExperienceDropdownOpen.value = false;
+    isLocationDropdownOpen.value = false;
+  }
+};
+
+const selectOption = (value) => {
+  selectedJobType.value = value;
+  isDropdownOpen.value = false;
+};
+
+// Experience level dropdown functionality
+const selectedExperienceLevel = ref("");
+const isExperienceDropdownOpen = ref(false);
+
+const toggleExperienceDropdown = (event) => {
+  // Stop event propagation to prevent immediate closing
+  event.stopPropagation();
+  isExperienceDropdownOpen.value = !isExperienceDropdownOpen.value;
+
+  // Close other dropdowns if they're open
+  if (isExperienceDropdownOpen.value) {
+    isDropdownOpen.value = false;
+    isLocationDropdownOpen.value = false;
+  }
+};
+
+const selectExperience = (value) => {
+  selectedExperienceLevel.value = value;
+  isExperienceDropdownOpen.value = false;
+};
+
+// Location dropdown functionality (NEW)
+const selectedLocation = ref("");
+const isLocationDropdownOpen = ref(false);
+
+const toggleLocationDropdown = (event) => {
+  // Stop event propagation to prevent immediate closing
+  event.stopPropagation();
+  isLocationDropdownOpen.value = !isLocationDropdownOpen.value;
+
+  // Close other dropdowns if they're open
+  if (isLocationDropdownOpen.value) {
+    isDropdownOpen.value = false;
+    isExperienceDropdownOpen.value = false;
+  }
+};
+
+const selectLocation = (value) => {
+  selectedLocation.value = value;
+  isLocationDropdownOpen.value = false;
+};
+
+const closeDropdownOutside = (event) => {
+  // Check if click is outside all dropdowns
+  if (!event.target.closest(".relative")) {
+    isDropdownOpen.value = false;
+    isExperienceDropdownOpen.value = false;
+    isLocationDropdownOpen.value = false;
+  }
+};
+
+// Add event listener for outside clicks when component mounts
+onMounted(() => {
+  document.addEventListener("click", closeDropdownOutside);
+});
+
+// Clean up event listener when component unmounts
+onBeforeUnmount(() => {
+  document.removeEventListener("click", closeDropdownOutside);
+});
 </script>
 
 <style scoped></style>
