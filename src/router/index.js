@@ -3,6 +3,8 @@ import Startpage from '../Views/Startpage.vue'
 import Register from '../Views/Register.vue'
 import Login from '../Views/Login.vue'
 import Homepage from '../Views/Homepage.vue'
+import Jobpage from '../Views/Jobpage.vue'
+import myprofile from '../Views/myprofile.vue'
 const routes = [
   {
     path: '/',
@@ -23,6 +25,16 @@ const routes = [
     path: '/homepage',
     name: 'homepage',
     component: Homepage
+  },
+  {
+    path: '/jobpage',
+    name: 'jobpage',
+    component: Jobpage
+  },
+  {
+    path: '/myprofile',
+    name: 'myprofile',
+    component: myprofile
   },
 ]
 
